@@ -1,0 +1,44 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+import { site } from "../data/site";
+
+const values = [
+  { title: "Esprit de service", text: "Chaque repas et chaque mission est pensé pour l'autre : le client, la famille, l'équipe." },
+  { title: "Rigueur & hygiène", text: "Un cadre propre, des ingrédients organisés, des quantités respectées — la base d'un travail sérieux." },
+  { title: "Créativité culinaire", text: "Entre plats sénégalais et pâtisserie, j'ajoute une touche personnelle à chaque préparation." },
+];
+---
+
+<section id="apropos" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <SectionHeader index="01 · À propos" title="Un parcours entre cuisine et sciences humaines" />
+
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal class="space-y-5">
+        <p class="text-lg leading-relaxed text-ink-soft">
+          {site.position}
+        </p>
+        <p class="leading-relaxed text-muted">
+          Formée en sociologie à l'Université Cheikh Anta Diop de Dakar, je porte un regard
+          attentif sur le social : les besoins, les personnes, les contextes. De l'autre côté,
+          la cuisine est ma pratique quotidienne — des plats sénégalais et africains à la
+          pâtisserie, toujours avec le souci du détail et de la propreté.
+        </p>
+        <p class="leading-relaxed text-muted">
+          Je mets cette double sensibilité au service d'un restaurant, d'une famille ou d'une
+          structure professionnelle : comprendre les attentes, s'organiser, prévoir, et livrer
+          un travail appliqué du début à la fin.
+        </p>
+      </div>
+
+      <div data-reveal class="flex flex-col gap-4" style="--reveal-delay: 120ms">
+        {values.map((v) => (
+          <div class="rounded-2xl border border-line bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-accent/60">
+            <h3 class="mb-2 font-display text-lg font-semibold text-accent">{v.title}</h3>
+            <p class="text-sm leading-relaxed text-muted">{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

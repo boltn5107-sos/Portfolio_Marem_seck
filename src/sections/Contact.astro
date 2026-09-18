@@ -1,0 +1,120 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+import { site } from "../data/site";
+
+const contactCards = [
+  {
+    icon: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 4l8 5 8-5V6l-8 5-8-5v2z",
+    label: "Email",
+    value: site.email,
+    href: `mailto:${site.email}`,
+  },
+  {
+    icon: "M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z",
+    label: "Téléphone",
+    value: site.phone,
+    href: `tel:${site.phoneHref}`,
+  },
+  {
+    icon: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z",
+    label: "Localisation",
+    value: site.location,
+    href: "#",
+  },
+];
+---
+
+<section id="contact" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <SectionHeader
+      index="08 · Contact"
+      title="Parlons de votre projet"
+      intro="Un repas à préparer, une pâtisserie à commander, une cuisine à coordonner ou une étude à mener : écrivez-moi."
+    />
+
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div data-reveal class="flex flex-col gap-4">
+        {
+          contactCards.map((card) => (
+            <a
+              href={card.href}
+              class:list={[
+                "group flex items-center gap-4 rounded-2xl border border-line bg-surface p-5 transition-all hover:border-accent/60 hover:shadow-card",
+                card.href === "#" && "pointer-events-none",
+              ]}
+            >
+              <span class="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-hero-well text-accent transition-colors group-hover:bg-accent group-hover:text-on-accent">
+                <svg viewBox="0 0 24 24" class="size-5" fill="currentColor" aria-hidden="true">
+                  <path d={card.icon} />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-xs font-semibold uppercase tracking-wide text-muted">
+                  {card.label}
+                </span>
+                <span class="block truncate text-sm font-medium text-ink">
+                  {card.value}
+                </span>
+              </span>
+            </a>
+          ))
+        }
+
+        <p class="mt-2 rounded-2xl border border-line bg-surface p-5 text-sm leading-relaxed text-muted">
+          Disponible pour une collaboration régulière ou ponctuelle à Dakar et environs.
+          Chaque demande est traitée avec sérieux et dans les meilleurs délais.
+        </p>
+      </div>
+
+      <div data-reveal class="rounded-2xl border border-line bg-surface p-6 sm:p-8" style="--reveal-delay: 120ms">
+        <form data-contact-form data-email={site.email} class="space-y-5" novalidate>
+          <input type="text" name="website" class="hpot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="contact-name" class="mb-2 block text-sm font-medium text-ink-soft">
+                Nom complet
+              </label>
+              <input id="contact-name" name="name" type="text" class="field" placeholder="Votre nom" required />
+              <p data-error="name" class="mt-1.5 text-xs text-red-600 dark:text-red-400" aria-live="polite"></p>
+            </div>
+            <div>
+              <label for="contact-email" class="mb-2 block text-sm font-medium text-ink-soft">
+                Email
+              </label>
+              <input id="contact-email" name="email" type="email" class="field" placeholder="vous@exemple.com" required />
+              <p data-error="email" class="mt-1.5 text-xs text-red-600 dark:text-red-400" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-message" class="mb-2 block text-sm font-medium text-ink-soft">
+              Message
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="5"
+              class="field resize-none"
+              placeholder="Décrivez votre besoin : occasion, date, nombre de personnes…"
+              required
+            ></textarea>
+            <p data-error="message" class="mt-1.5 text-xs text-red-600 dark:text-red-400" aria-live="polite"></p>
+          </div>
+
+          <button
+            type="submit"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3.5 text-sm font-semibold text-on-accent transition-all hover:bg-accent-hover hover:shadow-lg sm:w-auto"
+          >
+            Envoyer le message
+            <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"></path>
+            </svg>
+          </button>
+
+          <p data-form-status class="text-sm text-muted" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

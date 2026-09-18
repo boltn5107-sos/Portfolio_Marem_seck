@@ -1,0 +1,26 @@
+---
+interface Props {
+  index: string;
+  title: string;
+  intro?: string;
+  align?: "left" | "center";
+}
+
+const { index, title, intro, align = "left" } = Astro.props;
+---
+
+<div
+  data-reveal
+  class:list={[
+    "mb-10 sm:mb-14",
+    align === "center" ? "mx-auto text-center" : "max-w-2xl",
+  ]}
+>
+  <p class="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+    {index}
+  </p>
+  <h2 class="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+    {title}
+  </h2>
+  {intro && <p class="mt-4 text-base leading-relaxed text-muted">{intro}</p>}
+</div>

@@ -1,0 +1,120 @@
+---
+import { site } from "../data/site";
+import { publicUrl } from "../utils/path";
+
+const chips = [
+  { top: "6%", left: "-2%", label: "Cuisine sénégalaise", dot: "#e07a96" },
+  { top: "18%", right: "-4%", label: "Pâtisserie", dot: "#e3b34e" },
+  { bottom: "14%", left: "-4%", label: "Sociologie", dot: "#2f6f4f" },
+  { bottom: "4%", right: "-2%", label: "Hygiène & rigueur", dot: "#4a6785" },
+];
+---
+
+<section
+  id="accueil"
+  class="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-16"
+  aria-label="Présentation"
+>
+  <div class="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr]">
+    <div data-reveal>
+      <p class="mb-4 text-sm font-medium uppercase tracking-[0.24em] text-gold">
+        Bonjour, je suis
+      </p>
+      <h1 class="font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+        {site.firstName} <span class="text-accent">{site.lastName}</span>
+      </h1>
+      <p class="mt-4 text-lg font-medium tracking-wide text-ink-soft sm:text-xl">
+        {site.title}
+      </p>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+        {site.tagline}
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a
+          href="#realisations"
+          class="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-on-accent transition-all hover:bg-accent-hover hover:shadow-lg"
+        >
+          Voir mes réalisations
+          <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        <a
+          href="#contact"
+          class="inline-flex items-center gap-2 rounded-xl border border-line-strong px-5 py-3 text-sm font-semibold text-ink transition-all hover:border-accent hover:text-accent"
+        >
+          Me contacter
+        </a>
+      </div>
+
+      <p class="mt-8 flex items-center gap-2 text-sm text-muted">
+        <svg viewBox="0 0 24 24" class="size-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        {site.location}
+      </p>
+    </div>
+
+    <div data-reveal class="relative mx-auto w-full max-w-md" style="--reveal-delay: 120ms">
+      {
+        site.photo ? (
+          <div class="relative aspect-[5/6] overflow-hidden rounded-[2rem] border border-line bg-surface">
+            <img
+              src={publicUrl(site.photo)}
+              alt={site.photoAlt || `Portrait de ${site.name}`}
+              loading="eager"
+              decoding="async"
+              width="640"
+              height="768"
+              class="size-full object-cover"
+            />
+            <span class="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-line-strong/30" aria-hidden="true" />
+          </div>
+        ) : (
+          <div
+            class="relative aspect-square overflow-hidden rounded-[2rem] border border-line bg-hero-well p-6 sm:p-8"
+            aria-hidden="true"
+          >
+        <div class="ring-anim absolute inset-0">
+          <svg
+            viewBox="0 0 400 400"
+            class="size-full text-gold/70"
+            fill="none"
+            stroke="currentColor"
+          >
+            <circle cx="200" cy="200" r="150" stroke-width="1" stroke-dasharray="3 10" />
+            <circle cx="200" cy="200" r="178" stroke-width="1" stroke-dasharray="1 7" />
+          </svg>
+        </div>
+
+        <svg
+          viewBox="0 0 200 200"
+          class="absolute inset-0 m-auto size-[62%] text-accent"
+          fill="none"
+          stroke="currentColor"
+        >
+          <circle cx="100" cy="108" r="58" stroke-width="2.5" />
+          <circle cx="100" cy="108" r="44" stroke-width="1" stroke-dasharray="2 6" />
+          <path d="M74 60c-4-12 6-20 8-30M100 52c0-14 10-22 10-32M126 60c4-12-6-20-8-30" stroke-width="2" stroke-linecap="round" />
+          <circle cx="72" cy="72" r="3" fill="currentColor" stroke="none" />
+          <circle cx="132" cy="92" r="2.5" fill="currentColor" stroke="none" />
+        </svg>
+
+        <span class="absolute inset-0 m-auto size-1.5 rounded-full bg-accent" />
+
+        {chips.map((chip) => (
+          <span
+            class="absolute inline-flex items-center gap-2 rounded-full border border-line bg-surface/90 px-3.5 py-2 text-xs font-medium text-ink shadow-card backdrop-blur-sm"
+            style={{ top: chip.top, left: chip.left, right: chip.right, bottom: chip.bottom }}
+          >
+            <span class="size-2 rounded-full" style={{ backgroundColor: chip.dot }} />
+            {chip.label}
+          </span>
+        ))}
+        </div>
+        )}
+    </div>
+  </div>
+</section>

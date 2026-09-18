@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — Thème clair (défaut) et sombre (priorisé)
+   ------------------------------------------------------------------------- */
+:root {
+  --bg: #f5e8cf;
+  --surface: #fffaf1;
+  --surface-2: #f3e3c8;
+  --line: #e2ceac;
+  --line-strong: #c8ae85;
+  --ink: #2b211a;
+  --ink-soft: #57493b;
+  --muted: #7a6b52;
+  --accent: #c74e73;
+  --accent-hover: #ab3b5f;
+  --accent-soft: #8f6420;
+  --accent-ink: #79304b;
+  --on-accent: #fff6f8;
+  --gold: #8f6420;
+  --hero-well: rgba(199, 78, 115, 0.1);
+  --shadow: 0 12px 40px -18px rgba(120, 60, 70, 0.35);
+}
+
+.dark {
+  --bg: #1e1608;
+  --surface: #291e0d;
+  --surface-2: #332612;
+  --line: #463619;
+  --line-strong: #5f4b26;
+  --ink: #f5eee4;
+  --ink-soft: #e0d2b5;
+  --muted: #b29c6f;
+  --accent: #e07a96;
+  --accent-hover: #ee8faa;
+  --accent-soft: #e8c87a;
+  --accent-ink: #ffd9e3;
+  --on-accent: #2a1218;
+  --gold: #e8c87a;
+  --hero-well: rgba(224, 122, 150, 0.14);
+  --shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.6);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+  --color-hero-well: var(--hero-well);
+  --shadow-card: var(--shadow);
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --tracking-tight: -0.02em;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  @apply bg-bg text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reveal au scroll
+   ------------------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Détails décoratifs
+   ------------------------------------------------------------------------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.ring-anim {
+  animation: spin-slow 40s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring-anim {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Formulaire
+   ------------------------------------------------------------------------- */
+.field {
+  @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted/70 transition-colors;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.hpot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+[data-filter-card].is-hidden {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Menu mobile : caché par défaut, ouvert uniquement avec .is-open
+   ------------------------------------------------------------------------- */
+[data-menu-panel] {
+  display: none;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+[data-menu-panel].is-open {
+  display: block;
+}
+
+@media (min-width: 64rem) {
+  [data-menu-panel] {
+    display: none !important;
+  }
+}

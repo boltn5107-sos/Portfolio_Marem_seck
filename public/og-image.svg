@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#130e10"/>
+  <circle cx="600" cy="300" r="230" fill="none" stroke="#312529" stroke-width="2" stroke-dasharray="3 12"/>
+  <circle cx="600" cy="312" r="150" fill="none" stroke="#e07a96" stroke-width="8" opacity="0.9"/>
+  <circle cx="600" cy="312" r="110" fill="none" stroke="#e07a96" stroke-width="2" stroke-dasharray="3 9" opacity="0.6"/>
+  <path d="M468 190c-12-32 18-50 26-84M600 166c2-40 24-55 26-90M732 190c12-32-18-50-26-84" fill="none" stroke="#e3b34e" stroke-width="7" stroke-linecap="round"/>
+  <text x="80" y="440" font-family="Georgia, serif" font-size="92" fill="#f6eef0">Mareme Seck</text>
+  <text x="80" y="505" font-family="Arial, sans-serif" font-size="36" fill="#e3b34e" letter-spacing="4">CUISINIÈRE &amp; SOCIOLOGUE</text>
+  <text x="80" y="560" font-family="Arial, sans-serif" font-size="26" fill="#b3a1a4">Dakar, Sénégal — Cuisine sénégalaise · Pâtisserie · Observation sociale</text>
+  <circle cx="1083" cy="150" r="6" fill="#e07a96"/>
+  <circle cx="1020" cy="470" r="5" fill="#e3b34e"/>
+  <circle cx="140" cy="140" r="5" fill="#4a6785"/>
+</svg>

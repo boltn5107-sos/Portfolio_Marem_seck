@@ -1,0 +1,16 @@
+{
+  "name": "Fatou Ndiaye — Cuisinière & Sociologue",
+  "short_name": "Fatou Ndiaye",
+  "description": "Portfolio de Fatou Ndiaye, cuisinière et sociologue à Dakar.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#100d0b",
+  "theme_color": "#100d0b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

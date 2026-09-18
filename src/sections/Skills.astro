@@ -1,0 +1,40 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+import { skillGroups } from "../data/skills";
+---
+
+<section id="competences" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <SectionHeader
+      index="02 · Compétences"
+      title="Ce que je sais faire"
+      intro="Un savoir-faire culinaire solide, complété par des compétences académiques et organisationnelles."
+    />
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        skillGroups.map((group, i) => (
+          <div
+            data-reveal
+            class="rounded-2xl border border-line bg-surface p-6"
+            style={`--reveal-delay: ${i * 80}ms`}
+          >
+            <h3 class="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wide text-ink">
+              <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+              {group.category}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {
+                group.skills.map((skill) => (
+                  <span class="rounded-lg border border-line bg-surface-2 px-3 py-1.5 text-xs text-ink-soft transition-colors hover:border-accent/60 hover:text-accent">
+                    {skill.name}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

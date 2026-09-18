@@ -1,0 +1,115 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+import { experience } from "../data/experience";
+
+const qualities = [
+  "Sérieuse",
+  "Ponctuelle",
+  "Propre & organisée",
+  "Responsable",
+  "Créative",
+  "Appliquée",
+];
+
+const languages = ["Français — Bon niveau", "Wolof — Courant"];
+
+const activities = [
+  "Formations et activités d'entrepreneuriat",
+  "Aide à la gestion collective des fonds",
+  "Projets entrepreneuriaux (ex. élevage de poulet)",
+  "Lecture et analyse sociologique",
+  "Crochet et activité manuelle",
+];
+---
+
+<section id="parcours" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <SectionHeader
+      index="04 · Parcours"
+      title="Expériences & engagement"
+      intro="Une pratique culinaire régulière et une responsabilité de coordination, adossées à un parcours universitaire."
+    />
+
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal class="relative border-l border-line pl-8">
+        {
+          experience.map((item) => (
+            <article class="relative mb-12 last:mb-0">
+              <span
+                class="absolute -left-[35px] top-1.5 size-3 rounded-full border-2 border-accent bg-bg transition-colors group-hover:bg-accent"
+                aria-hidden="true"
+              />
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                {item.period}
+              </p>
+              <h3 class="mt-1.5 font-display text-xl font-semibold tracking-tight">
+                {item.role}
+              </h3>
+              <p class="mt-0.5 text-sm italic text-muted">{item.context}</p>
+              <ul class="mt-4 space-y-2">
+                {
+                  item.bullets.map((b) => (
+                    <li class="flex gap-2.5 text-sm leading-relaxed text-muted">
+                      <span class="mt-[7px] size-1.5 shrink-0 rounded-full bg-accent/70" aria-hidden="true" />
+                      {b}
+                    </li>
+                  ))
+                }
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+
+      <div data-reveal class="flex flex-col gap-5" style="--reveal-delay: 120ms">
+        <div class="rounded-2xl border border-line bg-surface p-6">
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-ink">
+            Qualités
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {
+              qualities.map((q) => (
+                <span class="rounded-lg bg-hero-well px-3 py-1.5 text-xs font-medium text-accent">
+                  {q}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-surface p-6">
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-ink">
+            Langues
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {
+              languages.map((l) => (
+                <span class="rounded-lg border border-line bg-surface-2 px-3 py-1.5 text-xs text-ink-soft">
+                  {l}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-surface p-6">
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-ink">
+            Bénévolat & centres d'intérêt
+          </h3>
+          <ul class="space-y-2.5">
+            {
+              activities.map((a) => (
+                <li class="flex gap-2.5 text-sm leading-relaxed text-muted">
+                  <svg viewBox="0 0 24 24" class="mt-0.5 size-4 shrink-0 text-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path>
+                  </svg>
+                  {a}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

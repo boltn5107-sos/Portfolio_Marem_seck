@@ -1,0 +1,41 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+
+const steps = [
+  { n: "01", title: "Écoute du besoin", text: "Comprendre ce que vous attendez : occasion, nombre de personnes, goûts, contraintes." },
+  { n: "02", title: "Compréhension du contexte", text: "Cadre du service, budget, hygiène et organisation de l'espace." },
+  { n: "03", title: "Conception de la proposition", text: "Choix du menu ou de l'approche, validation ensemble avant de démarrer." },
+  { n: "04", title: "Approvisionnement & préparation", text: "Ingrédients réunis, recettes appliquées, cuisine tenue propre et ordonnée." },
+  { n: "05", title: "Dégustation & ajustement", text: "Point de contrôle avant le service pour ajuster le goût et la présentation." },
+  { n: "06", title: "Service & présentation", text: "Dressage soigné et coordination du service jusqu'au bout." },
+  { n: "07", title: "Suivi", text: "Retour sur l'appréciation, entretien de l'espace et fidélisation de la relation." },
+];
+---
+
+<section id="methodologie" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <SectionHeader
+      index="06 · Méthodologie"
+      title="Ma façon de travailler"
+      intro="De l'écoute du besoin au suivi, une méthode en sept étapes, appliquée à la cuisine comme à un projet d'organisation ou d'étude."
+    />
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step, i) => (
+          <div
+            data-reveal
+            class="relative flex flex-col rounded-2xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:border-accent/60"
+            style={`--reveal-delay: ${(i % 4) * 80}ms`}
+          >
+            <span class="mb-4 font-display text-2xl font-semibold text-accent/80">
+              {step.n}
+            </span>
+            <h3 class="mb-2 text-sm font-semibold">{step.title}</h3>
+            <p class="text-sm leading-relaxed text-muted">{step.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
